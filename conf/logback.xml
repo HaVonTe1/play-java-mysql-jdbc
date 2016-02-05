@@ -1,0 +1,43 @@
+<configuration>
+    
+  <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
+  
+      <property name="LOG_HOME" value="./logs" />
+	<property name="HUMAN_LOG_FILE_NAME" value="play-java-mysql-jdbc.log" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%coloredLevel - %logger - %message%n%xException</pattern>
+    </encoder>
+  </appender>
+
+	<appender name="FILE_HUMAN"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${HUMAN_LOG_FILE_NAME}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/bkp/${HUMAN_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<charset>utf-8</charset>
+			<pattern>%d %-5level %logger{35} [%t]: %msg%n</pattern>
+		</encoder>
+	</appender>
+  
+  
+	<Logger name="de.webtrekk.dp.chapter.play" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE_HUMAN" />
+	</Logger>
+	
+	
+  <root level="ERROR">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+</configuration>

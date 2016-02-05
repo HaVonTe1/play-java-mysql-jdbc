@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET 	/person/:id					de.webtrekk.dp.chapter.play.controllers.Application.getPerson(id:Int)
+POST    /person                     de.webtrekk.dp.chapter.play.controllers.Application.addPerson()
+GET     /person                     de.webtrekk.dp.chapter.play.controllers.Application.getPersons
+PUT     /person		                de.webtrekk.dp.chapter.play.controllers.Application.updatePerson
+DELETE  /person/:id					de.webtrekk.dp.chapter.play.controllers.Application.deletePerson(id:Int)
+
+
